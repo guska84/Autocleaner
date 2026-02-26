@@ -1,4 +1,4 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 using RimWorld;
 using System;
 using System.Collections.Generic;
@@ -17,7 +17,12 @@ namespace Autocleaner.Patch
     {
         static IEnumerable<Pawn> Postfix(IEnumerable<Pawn> pawns, MainTabWindow_PawnTable __instance)
         {
-            foreach (Pawn pawn in pawns)
+            // Materialize to a list first — if another mod's postfix returns a single-use
+            // generator (e.g. Milk), calling .Contains() on the already-drained iterator
+            // would always return false and re-add autocleaners as duplicates every frame.
+            List<Pawn> pawnList = pawns.ToList();
+
+            foreach (Pawn pawn in pawnList)
             {
                 yield return pawn;
             }
@@ -32,7 +37,7 @@ namespace Autocleaner.Patch
                 yield break;
             }
 
-            foreach (Pawn pawn in Find.CurrentMap.mapPawns.AllPawns.Where(x => x.Faction == Faction.OfPlayer && x.kindDef == Globals.AutocleanerPawnKind && !pawns.Contains(x)))
+            foreach (Pawn pawn in Find.CurrentMap.mapPawns.AllPawns.Where(x => x.Faction == Faction.OfPlayer && x.kindDef == Globals.AutocleanerPawnKind && !pawnList.Contains(x)))
             {
                 yield return pawn;
             }

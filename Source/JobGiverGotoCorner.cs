@@ -36,11 +36,13 @@ namespace Autocleaner
             return comp.PowerNet.HasActivePowerSource;
         }
 
-        static TraverseParms traverseParams = TraverseParms.For(TraverseMode.NoPassClosedDoors);
-
         IntVec3 FindSuitablePosition(Pawn pawn, Map map, IntVec3 pos)
         {
             IntVec3 target = IntVec3.Invalid;
+            // Use pawn-specific traversal so the floodfill can cross through doors the
+            // bot is allowed to open. The old static NoPassClosedDoors params meant any
+            // charging corner behind a closed door was invisible to the search.
+            TraverseParms traverseParams = TraverseParms.For(pawn, Danger.Deadly, TraverseMode.ByPawn);
             PathGrid pathGrid = map.pathing.For(traverseParams).pathGrid;
             CellIndices cellIndices = map.cellIndices;
             Predicate<IntVec3> passCheck = delegate (IntVec3 c)
