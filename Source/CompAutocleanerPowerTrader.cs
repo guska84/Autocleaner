@@ -16,7 +16,7 @@ namespace Autocleaner
            
         }
 
-        public override void PostDeSpawn(Map map)
+        public override void PostDeSpawn(Map map, DestroyMode mode)
         {
             map.powerNetManager.Notify_ConnectorDespawned(this);
             map.mapDrawer.MapMeshDirty(parent.Position, MapMeshFlagDefOf.PowerGrid, true, false);
