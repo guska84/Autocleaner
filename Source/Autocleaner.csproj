@@ -331,6 +331,7 @@
     <Compile Include="JobGiverCharge.cs" />
     <Compile Include="JobGiverGotoCorner.cs" />
     <Compile Include="JobGiverWaitForRepair.cs" />
+    <Compile Include="Patch\PatchBuildingDoor.cs" />
     <Compile Include="Patch\PatchGenAI.cs" />
     <Compile Include="Patch\PatchMainTabWindow_PawnTable.cs" />
     <Compile Include="Patch\PatchPawn_PlayerSettings.cs" />
