@@ -78,6 +78,9 @@
       <lifeExpectancy>2500</lifeExpectancy>
       <bloodDef>Filth_MachineBits</bloodDef>
     </race>
+    <ingestible>
+      <preferability>NeverForNutrition</preferability>
+    </ingestible>
   </ThingDef>
 
 
@@ -244,15 +247,6 @@
     </comps>
     <tradeTags><li>ExoticMisc</li></tradeTags>
     <thingSetMakerTags><li>RewardStandardMidFreq</li></thingSetMakerTags>
-  </ThingDef>
-
-  <ThingDef ParentName="CorpseBase">
-    <defName>Corpse_Autocleaner</defName>
-    <label>autocleaner corpse</label>
-    <ingestible>
-      <foodType>Corpse</foodType>
-      <preferability>NeverForNutrition</preferability>
-    </ingestible>
   </ThingDef>
 
 </Defs>
