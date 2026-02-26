@@ -79,9 +79,6 @@
       <lifeExpectancy>2500</lifeExpectancy>
       <bloodDef>Filth_MachineBits</bloodDef>
     </race>
-    <ingestible>
-      <preferability>NeverForNutrition</preferability>
-    </ingestible>
   </ThingDef>
 
 
